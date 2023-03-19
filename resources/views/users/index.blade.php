@@ -14,7 +14,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-    @can('users-create')
+    @can('Users-Create')
     <a href="{{ route('users.create') }}" class="btn btn-primary mb-4">Add New User</a>
     @endcan
     <table class="dt-complex-header table table-bordered">
@@ -45,11 +45,11 @@
             @endif
             </td>
             <td>
-                @can('users-edit')       
+                @can('Users-Edit')       
                     <a class="btn submit-btn" href="{{ route('users.edit',$user->id) }}"><i class=" ti ti-edit ti-ms"></i></a>
                 @endcan
 
-                @can('users-delete')
+                @can('Users-Delete')
                     {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
                     {{Form::button('<i class="ti ti-trash"></i>', ['type' =>'submit', 'class' => 'submit-btn'])}}
                     {!! Form::close() !!}

@@ -18,12 +18,14 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        DB::table('users')->insert([
-            'name' => 'Adji Supriyono',
-            'username' => 'ajspryn',
-            'email' => 'adjisupriyono@gmail.com',
-            'password' => Hash::make('12345678'),
-            'avatar' => 'avatar/avatar.png',
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'Adji Supriyono',
+        //     'username' => 'ajspryn',
+        //     'email' => 'adjisupriyono@gmail.com',
+        //     'password' => Hash::make('12345678'),
+        //     'avatar' => 'avatar/avatar.png',
+        // ]);
+        $this->call(PermissionTableSeeder::class);
+        $this->call(CreateAdminUserSeeder::class);
     }
 }

@@ -25,7 +25,7 @@ use App\Http\Controllers\ProfileController;
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
 Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::resource('roles', RoleController::class);

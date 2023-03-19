@@ -24,10 +24,10 @@
             <div class="d-flex justify-content-between align-items-end mt-1 text-sm">
                 <h4 class="mb-1">{{$role->name}}</h4>
               <div class="role-heading">
-                @can('role-edit')
+                @can('Role-Edit')
                 <a href="{{ route('roles.edit',$role->id) }}" class="btn submit-btn" ><i class=" ti ti-edit ti-ms"></i></a>
                 @endcan
-                @can('role-delete')
+                @can('Role-Delete')
                 {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
                 {{Form::button('<i class="ti ti-trash"></i>', ['type' =>'submit', 'class' => 'submit-btn'])}}
                 {!! Form::close() !!}    
@@ -49,7 +49,7 @@
             </div>
             <div class="col-sm-7">
               <div class="card-body text-sm-end text-center ps-sm-0">
-                @can('role-create')
+                @can('Role-Create')
                 <a href="{{ route('roles.create') }}" class="btn btn-primary mb-2 text-nowrap add-new-role">Add New Role</a>
                 @endcan
                 <p class="mb-0 mt-1">Add role, if it does not exist</p>
