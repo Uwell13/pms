@@ -27,7 +27,7 @@
                 @can('Exiting-Data-List')  
                 <ul class="menu-sub">
                   <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
-                    <a href="{{ route('users.index') }}" class="menu-link menu-link">
+                    <a href="{{ route('exitingdata.index') }}" class="menu-link menu-link">
                       <i class="menu-icon tf-icons ti ti-file-export"></i>
                       <div data-i18n="Exiting Data">Exiting Data</div>
                     </a>

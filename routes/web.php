@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Inventory\exitingdata\GroupController as ExitingdataGroupController;
+use App\Http\Controllers\Inventory\exitingdata\IndexController;
+use App\Http\Controllers\Inventory\exitingdata\MainGroupController as ExitingdataMainGroupController;
+use App\Http\Controllers\Inventory\exitingdata\SubGroupController as ExitingdataSubGroupController;
+use App\Http\Controllers\Inventory\GroupController;
+use App\Http\Controllers\Inventory\MainGroupController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -32,4 +38,9 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
     Route::resource('profile', ProfileController::class);
+    Route::resource('exitingdata', IndexController::class);
+    Route::resource('maingroup', ExitingdataMainGroupController::class);
+    Route::resource('group', ExitingdataGroupController::class);
+    Route::resource('subgroup', ExitingdataSubGroupController::class);
+
 });
