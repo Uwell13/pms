@@ -41,9 +41,6 @@ return new class extends Migration
             $table->string('maker')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
-            $table->index('uuid');
-            $table->unique(['unit_id', 'code_component', 'd_cc', 'item_code'], 'unique_components');
-            $table->foreign('unit_id')->references('uuid')->on('inventory_units')->onDelete('cascade');
         });
     }
 

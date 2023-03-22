@@ -17,9 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('uuid', 191);
             $table->integer('code_main_group');
-            $table->integer('ship_id')->unsigned();
-            $table->foreign('ship_id')->references('id')->on('ships');
-            $table->unique(['ship_id', 'code_main_group']);
+            $table->integer('ship_id');
             $table->index('uuid');
             $table->string('name');
             $table->text('specification')->nullable();

@@ -1,8 +1,10 @@
 <!-- DataTable with Buttons -->
 <div class="card-datatable table-responsive pt-0">
+    @can('Exiting-Data-Create')
     <div class="pull-right">
-        <a class="btn btn-success" href="{{ route('part.create') }}"> Create New Product</a>
+        <a class="btn btn-success" href="{{ route('part.create') }}"> Create New</a>
     </div>
+    @endcan
     <br />
     <table class="dt-complex-header table table-bordered">
         <thead>
@@ -28,11 +30,11 @@
                 <td>{{ $part->serial }}</td>
                 <td>{{ $part->quantity }}</td>
                 <td>
-                    @can('Users-Edit')       
+                    @can('Exiting-Data-Edit')       
                         <a class="btn submit-btn" href="{{ route('part.edit',$part->id) }}"><i class=" ti ti-edit ti-ms"></i></a>
                     @endcan
     
-                    @can('Users-Delete')
+                    @can('Exiting-Data-Delete')
                         {!! Form::open(['method' => 'DELETE','route' => ['part.destroy', $part->id],'style'=>'display:inline']) !!}
                         {{Form::button('<i class="ti ti-trash"></i>', ['type' =>'submit', 'class' => 'submit-btn'])}}
                         {!! Form::close() !!}

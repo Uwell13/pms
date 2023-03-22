@@ -24,14 +24,12 @@
                             <div class="d-flex justify-content-between align-items-end mt-1 text-sm">
                                 <h4 class="mb-1">{{ $role->name }}</h4>
                                 <div class="role-heading">
-                                    @can('role-edit')
+                                    
                                         <a href="{{ route('roles.edit', $role->id) }}" class="btn submit-btn"><i class=" ti ti-edit ti-ms"></i></a>
-                                    @endcan
-                                    @can('role-delete')
+                                    
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
                                         {{ Form::button('<i class="ti ti-trash"></i>', ['type' => 'submit', 'class' => 'submit-btn']) }}
                                         {!! Form::close() !!}
-                                    @endcan
                                 </div>
                             </div>
                         </div>

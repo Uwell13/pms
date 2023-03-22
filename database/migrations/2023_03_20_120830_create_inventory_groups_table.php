@@ -18,13 +18,9 @@ return new class extends Migration
             $table->string('uuid', 191);
             $table->string("main_group_id", 191);
             $table->string('code_group');
-            $table->unique(['main_group_id', 'code_group']);
-            $table->index('uuid');
             $table->string('name');
             $table->text('specification')->nullable();
             $table->timestamps();
-            $table->index('id');
-            $table->foreign('main_group_id')->references('uuid')->on('inventory_main_groups')->onDelete('cascade');
         });
     }
 

@@ -22,17 +22,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'username' => 'superadmin',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('12345678'),
-            'avatar' => 'avatar/avatar1.png'
-        ]);
-
-        $role = Role::create(['name' => 'Admin']);
-
         $permissions = [
             'office',
             'ship',
@@ -77,10 +66,20 @@ class DatabaseSeeder extends Seeder
             'Report-Inventory-Edit',
             'Report-Inventory-Delete'
         ];
-
+        
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
         }
+        
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'username' => 'superadmin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('12345678'),
+            'avatar' => 'avatar/avatar1.png'
+        ]);
+
+        $role = Role::create(['name' => 'Admin']);
 
         $permissions = Permission::pluck('id', 'id')->all();
 

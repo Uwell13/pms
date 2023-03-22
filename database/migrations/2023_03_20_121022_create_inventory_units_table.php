@@ -41,9 +41,6 @@ return new class extends Migration
             $table->string('maker')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
-            $table->index('uuid');
-            $table->unique(['sub_group_id', 'code_units', 'd_cu', 'item_code'], 'unique_units');
-            $table->foreign('sub_group_id')->references('uuid')->on('inventory_sub_groups')->onDelete('cascade');
         });
     }
 
