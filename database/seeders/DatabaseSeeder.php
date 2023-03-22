@@ -47,7 +47,11 @@ class DatabaseSeeder extends Seeder
             'ship-list',
             'ship-create',
             'ship-edit',
-            'ship-delete'
+            'ship-delete',
+            'crew-list',
+            'crew-create',
+            'crew-edit',
+            'crew-delete'
         ];
 
         foreach ($permissions as $permission) {

@@ -42,6 +42,22 @@
                         </ul>
                     </li>
                 @endif
+                @can('crew-list')
+                    <li class="menu-item {{ Request::is('crew') ? 'active' : '' }}">
+                        <a href="/" class="menu-link menu-toggle">
+                            <i class='menu-icon tf-icons ti ti-user-star'></i>
+                            <div data-i18n="Crew">Crew</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item {{ Request::is('crew') ? 'active' : '' }}">
+                                <a href="/crew" class="menu-link menu-link">
+                                    <i class="menu-icon tf-icons ti ti-user-star"></i>
+                                    <div data-i18n="Crew">Crew</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
                 @if (auth()->user()->can('user-list') ||
                         auth()->user()->can('role-list'))
                     <li class="menu-item {{ Request::is('roles', 'users') ? 'active' : '' }}">
