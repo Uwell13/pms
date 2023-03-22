@@ -4,7 +4,7 @@
 <title>
     @yield('title')
 </title>
-@vite(['resources/js/app.js'])
+{{-- @vite(['resources/js/app.js']) --}}
 <meta name="description" content="" />
 
 <!-- Favicon -->
