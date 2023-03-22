@@ -3,6 +3,15 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Inventory\exitingdata\ComponentController;
+use App\Http\Controllers\Inventory\exitingdata\GroupController as ExitingdataGroupController;
+use App\Http\Controllers\Inventory\exitingdata\IndexController;
+use App\Http\Controllers\Inventory\exitingdata\MainGroupController as ExitingdataMainGroupController;
+use App\Http\Controllers\Inventory\exitingdata\PartController;
+use App\Http\Controllers\Inventory\exitingdata\SubGroupController as ExitingdataSubGroupController;
+use App\Http\Controllers\Inventory\exitingdata\UnitController;
+use App\Http\Controllers\Inventory\GroupController;
+use App\Http\Controllers\Inventory\MainGroupController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -27,7 +36,7 @@ use App\Http\Controllers\ship\ShipController;
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
 Route::group(['middleware' => ['auth', 'verified', 'ship']], function () {
     Route::resource('roles', RoleController::class);
@@ -35,6 +44,14 @@ Route::group(['middleware' => ['auth', 'verified', 'ship']], function () {
     Route::resource('ship', ShipController::class);
     Route::resource('crew', CrewController::class);
     Route::resource('profile', ProfileController::class);
+    Route::resource('exitingdata', IndexController::class);
+    Route::resource('maingroup', ExitingdataMainGroupController::class);
+    Route::resource('group', ExitingdataGroupController::class);
+    Route::resource('subgroup', ExitingdataSubGroupController::class);
+    Route::resource('unit', UnitController::class);
+    Route::resource('component', ComponentController::class);
+    Route::resource('part', PartController::class);
+
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {

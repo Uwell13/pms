@@ -29,7 +29,7 @@
                                     @endcan
                                     @can('role-delete')
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
-                                        <a class="text-muted" onclick="return Swal.fire({title:'Apakah Anda yakin ingin menghapus data ini?',icon:'warning',showCancelButton:true,confirmButtonText:'Ya',cancelButtonText:'Tidak',reverseButtons:true}).then((result) => {if (result.isConfirmed) {this.closest('form').submit();} else {return false;}});"><i class="ti ti-trash"></i></a>
+                                        {{ Form::button('<i class="ti ti-trash"></i>', ['type' => 'submit', 'class' => 'submit-btn']) }}
                                         {!! Form::close() !!}
                                     @endcan
                                 </div>
@@ -50,8 +50,7 @@
                         <div class="col-sm-7">
                             <div class="card-body text-sm-end text-center ps-sm-0">
                                 @can('role-create')
-                                    {{-- <a href="{{ route('roles.create') }}" class="btn btn-primary mb-2 text-nowrap add-new-role">Add New Role</a> --}}
-                                    <button data-bs-target="#addRoleModal" data-bs-toggle="modal" class="btn btn-primary mb-2 text-nowrap add-new-role">Add New Role</button>
+                                    <a href="{{ route('roles.create') }}" class="btn btn-primary mb-2 text-nowrap add-new-role">Add New Role</a>
                                 @endcan
                                 <p class="mb-0 mt-1">Add role, if it does not exist</p>
                             </div>

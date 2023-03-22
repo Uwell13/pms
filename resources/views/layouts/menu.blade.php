@@ -24,67 +24,38 @@
                     </ul>
                 </li>
                 <!-- Apps -->
-                @if (auth()->user()->can('ship-list'))
-                    <li class="menu-item {{ Request::is('ship') ? 'active' : '' }}">
-                        <a href="/" class="menu-link menu-toggle">
-                            <i class='menu-icon tf-icons ti ti-ship'></i>
-                            <div data-i18n="Ship">Ship</div>
-                        </a>
-                        <ul class="menu-sub">
-                            @can('ship-list')
-                                <li class="menu-item {{ Request::is('ship') ? 'active' : '' }}">
-                                    <a href="/ship" class="menu-link menu-link">
-                                        <i class="menu-icon tf-icons ti ti-ship"></i>
-                                        <div data-i18n="Ship">Ship</div>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endif
-                @can('crew-list')
-                    <li class="menu-item {{ Request::is('crew') ? 'active' : '' }}">
-                        <a href="/" class="menu-link menu-toggle">
-                            <i class='menu-icon tf-icons ti ti-user-star'></i>
-                            <div data-i18n="Crew">Crew</div>
-                        </a>
-                        <ul class="menu-sub">
-                            <li class="menu-item {{ Request::is('crew') ? 'active' : '' }}">
-                                <a href="/crew" class="menu-link menu-link">
-                                    <i class="menu-icon tf-icons ti ti-user-star"></i>
-                                    <div data-i18n="Crew">Crew</div>
+                <li class="menu-item {{ Request::is('roles', 'users') ? 'active' : '' }}">
+                    <a href="/" class="menu-link menu-toggle">
+                        <i class='menu-icon tf-icons ti ti-layout-grid-add'></i>
+                        <div data-i18n="Apps">Apps</div>
+                    </a>
+                    <ul class="menu-sub">
+                        @can('product-list')
+                            <li class="menu-item {{ Request::is('products') ? 'active' : '' }}">
+                                <a href="{{ route('products.index') }}" class="menu-link">
+                                    <i class="menu-icon tf-icons ti ti-box"></i>
+                                    <div data-i18n="Product">Products</div>
                                 </a>
                             </li>
-                        </ul>
-                    </li>
-                @endcan
-                @if (auth()->user()->can('user-list') ||
-                        auth()->user()->can('role-list'))
-                    <li class="menu-item {{ Request::is('roles', 'users') ? 'active' : '' }}">
-                        <a href="/" class="menu-link menu-toggle">
-                            <i class='menu-icon tf-icons ti ti-user'></i>
-                            <div data-i18n="User">User</div>
-                        </a>
-                        <ul class="menu-sub">
-                            @can('users-list')
-                                <li class="menu-item {{ Request::is('users') ? 'active' : '' }}">
-                                    <a href="{{ route('users.index') }}" class="menu-link menu-link">
-                                        <i class="menu-icon tf-icons ti ti-users"></i>
-                                        <div data-i18n="Users">Users</div>
-                                    </a>
-                                </li>
-                            @endcan
-                            @can('role-list')
-                                <li class="menu-item {{ Request::is('roles') ? 'active' : '' }}">
-                                    <a href="{{ route('roles.index') }}" class="menu-link menu-link">
-                                        <i class="menu-icon tf-icons ti ti-settings"></i>
-                                        <div data-i18n="Roles">Roles</div>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endif
+                        @endcan
+                        @can('users-list')
+                            <li class="menu-item {{ Request::is('users') ? 'active' : '' }}">
+                                <a href="{{ route('users.index') }}" class="menu-link menu-link">
+                                    <i class="menu-icon tf-icons ti ti-users"></i>
+                                    <div data-i18n="Users">Users</div>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('role-list')
+                            <li class="menu-item {{ Request::is('roles') ? 'active' : '' }}">
+                                <a href="{{ route('roles.index') }}" class="menu-link menu-link">
+                                    <i class="menu-icon tf-icons ti ti-settings"></i>
+                                    <div data-i18n="Roles">Roles</div>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
             </ul>
         </div>
     </aside>
