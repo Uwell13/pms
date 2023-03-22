@@ -12,4 +12,9 @@ class Role extends Model
     protected $guarded = [
         'created_at'
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'id', 'user_id');
+    }
 }

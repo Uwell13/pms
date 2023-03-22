@@ -29,10 +29,10 @@ class AppServiceProvider extends ServiceProvider
             return "Rp. <?php echo number_format($expression,0,',','.'); ?>";
         });
 
-        Blade::directive('role', function ($expression) {
-            $role=Auth::user()->role->role;
-            return "{{ Auth::user()->role->role }}";
-        });
+        // Blade::directive('role', function ($expression) {
+        //     $role=Auth::user()->role->role;
+        //     return "{{ Auth::user()->role->role }}";
+        // });
 
         Blade::directive('romawi', function ($expression) {
             switch ($expression) {

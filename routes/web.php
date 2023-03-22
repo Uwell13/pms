@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ship\ShipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +28,19 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
-Route::group(['middleware' => ['auth', 'verified']], function() {
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-    Route::resource('products', ProductController::class);
+    Route::resource('ship', ShipController::class);
     Route::resource('profile', ProfileController::class);
+    Route::get('/ship/{uuid}/selected', function ($uuid) {
+        session()->put('ship_uuid', $uuid);
+        // dd(session());
+        return redirect('/');
+    });
+    Route::get('/change/ship', function () {
+        session()->forget('ship_uuid');
+        // dd(session());
+        return redirect('/');
+    });
 });

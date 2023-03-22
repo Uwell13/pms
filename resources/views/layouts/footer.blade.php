@@ -3,7 +3,7 @@
     <div class="container-xxl">
         <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
             <div>
-                <a href="/" target="_blank" class="footer-text fw-bolder">Mithlabs</a>
+                <a href="/" target="_blank" class="footer-text fw-bolder">PMS</a>
                 ©
                 <script>
                     document.write(new Date().getFullYear());
