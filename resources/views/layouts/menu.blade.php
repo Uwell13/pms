@@ -9,7 +9,7 @@
                         <div data-i18n="Dashboards">Dashboards</div>
                     </a>
                     <ul class="menu-sub">
-                        <li class="menu-item {{ Request::is('/Analytics') ? 'active' : '' }}">
+                        <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
                             <a href="/" class="menu-link">
                                 <i class="menu-icon tf-icons ti ti-chart-pie-2"></i>
                                 <div data-i18n="Analytics">Analytics</div>
@@ -24,38 +24,117 @@
                     </ul>
                 </li>
                 <!-- Apps -->
-                <li class="menu-item {{ Request::is('roles', 'users') ? 'active' : '' }}">
-                    <a href="/" class="menu-link menu-toggle">
-                        <i class='menu-icon tf-icons ti ti-layout-grid-add'></i>
-                        <div data-i18n="Apps">Apps</div>
-                    </a>
-                    <ul class="menu-sub">
-                        @can('product-list')
-                            <li class="menu-item {{ Request::is('products') ? 'active' : '' }}">
-                                <a href="{{ route('products.index') }}" class="menu-link">
-                                    <i class="menu-icon tf-icons ti ti-box"></i>
-                                    <div data-i18n="Product">Products</div>
+                @can('Inventory-List')
+                    <li class="menu-item {{ Request::is('exitingdata') ? 'active' : '' }}">
+                        <a href="/" class="menu-link menu-toggle">
+                            <i class='menu-icon tf-icons ti ti-packages'></i>
+                            <div data-i18n="Inventory">Inventory</div>
+                        </a>
+                        @can('Exiting-Data-List')
+                            <ul class="menu-sub">
+                                <li class="menu-item {{ Request::is('exitingdata') ? 'active' : '' }}">
+                                    <a href="{{ route('exitingdata.index') }}" class="menu-link menu-link">
+                                        <i class="menu-icon tf-icons ti ti-file-export"></i>
+                                        <div data-i18n="Exiting Data">Exiting Data</div>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('Inventory-Stock-List')
+                                <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
+                                    <a href="{{ route('roles.index') }}" class="menu-link menu-link">
+                                        <i class="menu-icon tf-icons ti ti-package"></i>
+                                        <div data-i18n="Inventory Stock">Inventory Stock</div>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('Transaction-In-List')
+                                <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
+                                    <a href="{{ route('roles.index') }}" class="menu-link menu-link">
+                                        <i class="menu-icon tf-icons ti ti-file-arrow-left"></i>
+                                        <div data-i18n="Transaction In">Transaction In</div>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('Transaction-Out-List')
+                                <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
+                                    <a href="{{ route('roles.index') }}" class="menu-link menu-link">
+                                        <i class="menu-icon tf-icons ti ti-file-arrow-right"></i>
+                                        <div data-i18n="Transaction Out">Transaction Out</div>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('Report-Inventory-List')
+                                <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
+                                    <a href="{{ route('roles.index') }}" class="menu-link menu-link">
+                                        <i class="menu-icon tf-icons ti ti-report"></i>
+                                        <div data-i18n="Report Inventory">Report Inventory</div>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
+                @if (auth()->user()->can('ship-list'))
+                    <li class="menu-item {{ Request::is('ship') ? 'active' : '' }}">
+                        <a href="/" class="menu-link menu-toggle">
+                            <i class='menu-icon tf-icons ti ti-ship'></i>
+                            <div data-i18n="Ship">Ship</div>
+                        </a>
+                        <ul class="menu-sub">
+                            @can('ship-list')
+                                <li class="menu-item {{ Request::is('ship') ? 'active' : '' }}">
+                                    <a href="/ship" class="menu-link menu-link">
+                                        <i class="menu-icon tf-icons ti ti-ship"></i>
+                                        <div data-i18n="Ship">Ship</div>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endif
+                @can('crew-list')
+                    <li class="menu-item {{ Request::is('crew') ? 'active' : '' }}">
+                        <a href="/" class="menu-link menu-toggle">
+                            <i class='menu-icon tf-icons ti ti-user-star'></i>
+                            <div data-i18n="Crew">Crew</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item {{ Request::is('crew') ? 'active' : '' }}">
+                                <a href="/crew" class="menu-link menu-link">
+                                    <i class="menu-icon tf-icons ti ti-user-star"></i>
+                                    <div data-i18n="Crew">Crew</div>
                                 </a>
                             </li>
-                        @endcan
-                        @can('users-list')
-                            <li class="menu-item {{ Request::is('users') ? 'active' : '' }}">
-                                <a href="{{ route('users.index') }}" class="menu-link menu-link">
-                                    <i class="menu-icon tf-icons ti ti-users"></i>
-                                    <div data-i18n="Users">Users</div>
-                                </a>
-                            </li>
-                        @endcan
-                        @can('role-list')
-                            <li class="menu-item {{ Request::is('roles') ? 'active' : '' }}">
-                                <a href="{{ route('roles.index') }}" class="menu-link menu-link">
-                                    <i class="menu-icon tf-icons ti ti-settings"></i>
-                                    <div data-i18n="Roles">Roles</div>
-                                </a>
-                            </li>
-                        @endcan
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                @endcan
+                @if (auth()->user()->can('user-list') ||
+                        auth()->user()->can('role-list'))
+                    <li class="menu-item {{ Request::is('roles', 'users') ? 'active' : '' }}">
+                        <a href="/" class="menu-link menu-toggle">
+                            <i class='menu-icon tf-icons ti ti-user'></i>
+                            <div data-i18n="User">User</div>
+                        </a>
+                        <ul class="menu-sub">
+                            @can('users-list')
+                                <li class="menu-item {{ Request::is('users') ? 'active' : '' }}">
+                                    <a href="{{ route('users.index') }}" class="menu-link menu-link">
+                                        <i class="menu-icon tf-icons ti ti-users"></i>
+                                        <div data-i18n="Users">Users</div>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('role-list')
+                                <li class="menu-item {{ Request::is('roles') ? 'active' : '' }}">
+                                    <a href="{{ route('roles.index') }}" class="menu-link menu-link">
+                                        <i class="menu-icon tf-icons ti ti-settings"></i>
+                                        <div data-i18n="Roles">Roles</div>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endif
             </ul>
         </div>
     </aside>
