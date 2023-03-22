@@ -9,11 +9,11 @@
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="user-profile-header-banner">
-                        {{-- @if ($ship->photo)
+                        @if ($ship->photo)
                             <img src="{{ asset('storage/' . $ship->photo) }}" alt="Banner image" class="rounded-top" />
-                        @else --}}
-                        <img src="../../assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top" />
-                        {{-- @endif --}}
+                        @else
+                            <img src="../../assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top" />
+                        @endif
                     </div>
                     <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                         <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
@@ -27,7 +27,7 @@
                                     <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
                                         <li class="list-inline-item"><i class="ti ti-mail"></i> {{ Auth::user()->email }}</li>
                                         <li class="list-inline-item"><i class="ti ti-user"></i> {{ Auth::user()->username }}</li>
-                                        {{-- <li class="list-inline-item"><i class="ti ti-ship"></i> {{ $ship->name }}</li> --}}
+                                        <li class="list-inline-item"><i class="ti ti-ship"></i> {{ $ship->name }}</li>
                                     </ul>
                                 </div>
                                 {{-- <a href="javascript:void(0)" class="btn btn-primary">
