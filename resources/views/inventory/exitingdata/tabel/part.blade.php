@@ -1,7 +1,7 @@
 <!-- DataTable with Buttons -->
 <div class="card-datatable table-responsive pt-0">
     <div class="pull-right">
-        <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+        <a class="btn btn-success" href="{{ route('part.create') }}"> Create New Product</a>
     </div>
     <br />
     <table class="dt-complex-header table table-bordered">
@@ -20,13 +20,24 @@
         @foreach ($part as $part)
         <tbody>
             <tr>
-                <td>{{ ++$i }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td>{{ $part->code_part }}</td>
                 <td>{{ $part->name }}</td>
                 <td>{{ $part->list_no }}</td>
                 <td>{{ $part->type }}</td>
                 <td>{{ $part->serial }}</td>
                 <td>{{ $part->quantity }}</td>
+                <td>
+                    @can('Users-Edit')       
+                        <a class="btn submit-btn" href="{{ route('part.edit',$part->id) }}"><i class=" ti ti-edit ti-ms"></i></a>
+                    @endcan
+    
+                    @can('Users-Delete')
+                        {!! Form::open(['method' => 'DELETE','route' => ['part.destroy', $part->id],'style'=>'display:inline']) !!}
+                        {{Form::button('<i class="ti ti-trash"></i>', ['type' =>'submit', 'class' => 'submit-btn'])}}
+                        {!! Form::close() !!}
+                    @endcan
+                </td>
             </tr>
         </tbody>
         @endforeach

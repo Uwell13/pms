@@ -19,14 +19,14 @@
                 </li>
             <!-- Inventory -->
             @can('Inventory-List')
-            <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
+            <li class="menu-item {{ Request::is('exitingdata') ? 'active' : '' }}">
                 <a href="/" class="menu-link menu-toggle">
                   <i class='menu-icon tf-icons ti ti-packages'></i>
                   <div data-i18n="Inventory">Inventory</div>
                 </a> 
                 @can('Exiting-Data-List')  
                 <ul class="menu-sub">
-                  <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
+                  <li class="menu-item {{ Request::is('exitingdata') ? 'active' : '' }}">
                     <a href="{{ route('exitingdata.index') }}" class="menu-link menu-link">
                       <i class="menu-icon tf-icons ti ti-file-export"></i>
                       <div data-i18n="Exiting Data">Exiting Data</div>
@@ -41,7 +41,7 @@
                 </a>                
               </li>
               @endcan
-              @can('Transaction-In')    
+              @can('Transaction-In-List')    
               <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
                 <a href="{{ route('roles.index') }}" class="menu-link menu-link">
                   <i class="menu-icon tf-icons ti ti-file-arrow-left"></i>
