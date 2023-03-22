@@ -22,7 +22,7 @@ class CrewController extends Controller
     public function index()
     {
         return view('crew.index', [
-            'crews' => Ship::with('crew.user')->get()->first(),
+            'crews' => Ship::with('crew.user')->where('uuid', session('ship_uuid'))->get()->first(),
             'roles' => Role::whereNotIn('id', [1])->get(),
         ]);
     }
