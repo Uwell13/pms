@@ -27,7 +27,7 @@
 
                     @include('sweetalert::alert')
 
-                    @include('layouts.menu')
+                    {{-- @include('layouts.menu') --}}
 
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
