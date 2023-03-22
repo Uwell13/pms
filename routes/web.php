@@ -38,7 +38,7 @@ Auth::routes();
 
 Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index']);
-Route::group(['middleware' => ['auth', 'verified', 'ship']], function () {
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('ship', ShipController::class);
@@ -51,7 +51,6 @@ Route::group(['middleware' => ['auth', 'verified', 'ship']], function () {
     Route::resource('unit', UnitController::class);
     Route::resource('component', ComponentController::class);
     Route::resource('part', PartController::class);
-
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
