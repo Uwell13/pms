@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'username' => 'superadmin',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('12345678'),
+            'password' => Hash::make('12345678'),
             'avatar' => 'avatar/avatar1.png'
         ]);
 
@@ -51,7 +51,31 @@ class DatabaseSeeder extends Seeder
             'crew-list',
             'crew-create',
             'crew-edit',
-            'crew-delete'
+            'crew-delete',
+            'Inventory-List',
+            'Inventory-Create',
+            'Inventory-Edit',
+            'Inventory-Delete',
+            'Exiting-Data-List',
+            'Exiting-Data-Create',
+            'Exiting-Data-Edit',
+            'Exiting-Data-Delete',
+            'Inventory-Stock-List',
+            'Inventory-Stock-Create',
+            'Inventory-Stock-Edit',
+            'Inventory-Stock-Delete',
+            'Transaction-In-List',
+            'Transaction-In-Create',
+            'Transaction-In-Edit',
+            'Transaction-In-Delete',
+            'Transaction-Out-List',
+            'Transaction-Out-Create',
+            'Transaction-Out-Edit',
+            'Transaction-Out-Delete',
+            'Report-Inventory-List',
+            'Report-Inventory-Create',
+            'Report-Inventory-Edit',
+            'Report-Inventory-Delete'
         ];
 
         foreach ($permissions as $permission) {
