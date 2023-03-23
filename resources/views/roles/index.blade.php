@@ -24,12 +24,14 @@
                             <div class="d-flex justify-content-between align-items-end mt-1 text-sm">
                                 <h4 class="mb-1">{{ $role->name }}</h4>
                                 <div class="role-heading">
-                                    
+                                    @can('role-edit')
                                         <a href="{{ route('roles.edit', $role->id) }}" class="btn submit-btn"><i class=" ti ti-edit ti-ms"></i></a>
-                                    
+                                    @endcan
+                                    @can('role-delete')
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) !!}
-                                        {{ Form::button('<i class="ti ti-trash"></i>', ['type' => 'submit', 'class' => 'submit-btn']) }}
+                                        <a class="text-muted" onclick="return Swal.fire({title:'Apakah Anda yakin ingin menghapus data ini?',icon:'warning',showCancelButton:true,confirmButtonText:'Ya',cancelButtonText:'Tidak',reverseButtons:true}).then((result) => {if (result.isConfirmed) {this.closest('form').submit();} else {return false;}});"><i class="ti ti-trash"></i></a>
                                         {!! Form::close() !!}
+                                    @endcan
                                 </div>
                             </div>
                         </div>
@@ -48,7 +50,8 @@
                         <div class="col-sm-7">
                             <div class="card-body text-sm-end text-center ps-sm-0">
                                 @can('role-create')
-                                    <a href="{{ route('roles.create') }}" class="btn btn-primary mb-2 text-nowrap add-new-role">Add New Role</a>
+                                    {{-- <a href="{{ route('roles.create') }}" class="btn btn-primary mb-2 text-nowrap add-new-role">Add New Role</a> --}}
+                                    <button data-bs-target="#addRoleModal" data-bs-toggle="modal" class="btn btn-primary mb-2 text-nowrap add-new-role">Add New Role</button>
                                 @endcan
                                 <p class="mb-0 mt-1">Add role, if it does not exist</p>
                             </div>
@@ -186,26 +189,150 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input" value="{{ $permissions[10]->id }}" name="permission[]" type="checkbox" id="contentManagementRead" />
-                                                        <label class="form-check-label" for="contentManagementRead">
+                                                        <input class="form-check-input" value="{{ $permissions[10]->id }}" name="permission[]" type="checkbox" id="contentManagementRead2" />
+                                                        <label class="form-check-label" for="contentManagementRead2">
                                                             Read
                                                         </label>
                                                     </div>
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input" value="{{ $permissions[11]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate" />
-                                                        <label class="form-check-label" for="contentManagementCreate">
+                                                        <input class="form-check-input" value="{{ $permissions[11]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate2" />
+                                                        <label class="form-check-label" for="contentManagementCreate2">
                                                             Create
                                                         </label>
                                                     </div>
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input" value="{{ $permissions[12]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate" />
-                                                        <label class="form-check-label" for="contentManagementUpdate">
+                                                        <input class="form-check-input" value="{{ $permissions[12]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate2" />
+                                                        <label class="form-check-label" for="contentManagementUpdate2">
                                                             Update
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="{{ $permissions[13]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete" />
-                                                        <label class="form-check-label" for="contentManagementDelete">
+                                                        <input class="form-check-input" value="{{ $permissions[13]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete2" />
+                                                        <label class="form-check-label" for="contentManagementDelete2">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[14]->name, '-', true) }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[14]->id }}" name="permission[]" type="checkbox" id="contentManagementRead3" />
+                                                        <label class="form-check-label" for="contentManagementRead3">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[15]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate3" />
+                                                        <label class="form-check-label" for="contentManagementCreate3">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[16]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate3" />
+                                                        <label class="form-check-label" for="contentManagementUpdate3">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[17]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete3" />
+                                                        <label class="form-check-label" for="contentManagementDelete3">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[18]->name, '-', true) }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[18]->id }}" name="permission[]" type="checkbox" id="contentManagementRead4" />
+                                                        <label class="form-check-label" for="contentManagementRead4">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[19]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate4" />
+                                                        <label class="form-check-label" for="contentManagementCreate4">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[20]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate4" />
+                                                        <label class="form-check-label" for="contentManagementUpdate4">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[21]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete4" />
+                                                        <label class="form-check-label" for="contentManagementDelete4">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[22]->name, '-', true) }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[22]->id }}" name="permission[]" type="checkbox" id="contentManagementRead5" />
+                                                        <label class="form-check-label" for="contentManagementRead5">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[23]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate5" />
+                                                        <label class="form-check-label" for="contentManagementCreate5">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[24]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate5" />
+                                                        <label class="form-check-label" for="contentManagementUpdate5">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[25]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete5" />
+                                                        <label class="form-check-label" for="contentManagementDelete5">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[26]->name, '-', true) }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[26]->id }}" name="permission[]" type="checkbox" id="contentManagementRead6" />
+                                                        <label class="form-check-label" for="contentManagementRead6">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[27]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate6" />
+                                                        <label class="form-check-label" for="contentManagementCreate6">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[28]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate6" />
+                                                        <label class="form-check-label" for="contentManagementUpdate6">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[29]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete6" />
+                                                        <label class="form-check-label" for="contentManagementDelete6">
                                                             Delete
                                                         </label>
                                                     </div>
