@@ -180,7 +180,7 @@
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h3 class="mb-1 fw-bold">Hallo Gaisss ! 👋</h3>
+                    <h3 class="mb-1 fw-bold">Login ! 👋</h3>
                     <p class="mb-4">Silahkan Login Menggunakan Email Dan Password Kamu yaa</p>
 
                     <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
