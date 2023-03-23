@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Inventory\exitingdata;
 
 use App\Http\Controllers\Controller;
 use App\Models\inventory\InventoryMainGroups;
+use App\Models\ship\Ship;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class MainGroupController extends Controller
 {
@@ -36,14 +38,16 @@ class MainGroupController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-        'code_main_group' => 'required|integer|between:0,9',
-          'uuid' => 'required',
-          'name' => 'required',
-          'ship_id' => 'required|exists:ships,id',
+        $request->validate([
+            'code_main_group' => 'required|integer|between:0,9',
+            'name' => 'required',
         ]);
 
         $input = $request->all();
+        $ship_id = Ship::where('uuid', session('ship_uuid'))->get()->first();
+        $input['ship_id'] = $ship_id->id;
+        $input['uuid'] = Uuid::uuid4();
+
         InventoryMainGroups::create($input);
 
         return redirect()->route('exitingdata.index')
@@ -84,7 +88,6 @@ class MainGroupController extends Controller
     {
         $this->validate($request, [
             'code_main_group' => 'required|integer|between:0,9'.$id,
-              'uuid' => 'required' ,
               'name' => 'required',
               'ship_id' => 'required|exists:ships,id',
             ]);

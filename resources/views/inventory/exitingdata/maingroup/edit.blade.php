@@ -26,11 +26,6 @@
               <div data-repeater-list="group-a">
                 <div data-repeater-item>
                   <div class="row">
-                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
-                        <label class="form-label" for="form-repeater-1-1">UUID</label>
-                        {!! Form::text('uuid', null, array('placeholder' => 'uuid', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
-                        {{-- <input type="text" id="form-repeater-1-1" class="form-control"  name="uuid" /> --}}
-                        </div>
                         <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
                           <label class="form-label" for="form-repeater-1-2">Code Main Group</label>
                           {!! Form::text('code_main_group', null, array('placeholder' => 'code Main Group', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}

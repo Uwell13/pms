@@ -10,14 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class InventoryMainGroups extends Model
 {
+    use HasFactory;
     // public $timestamps = false;
     // protected $primaryKey = 'id'; 
     //   protected $table = 'inventory_main_groups';
-      protected $fillable = [
-          'code_main_group',
-          'uuid',
-          'name',
-          'ship_id',
+      protected $guarded = [
+        'id'
       ];
   
     //   public static $validator = [
@@ -27,15 +25,15 @@ class InventoryMainGroups extends Model
     //       'ship_id' => 'required|exists:ship,id',
     //   ];
   
-    //   public function ship(): BelongsTo
-    //   {
-    //       return $this->belongsTo(Ship::class);
-    //   }
+      public function ship(): BelongsTo
+      {
+          return $this->belongsTo(Ship::class);
+      }
   
-    //   public function group(): HasMany
-    //   {
-    //       return $this->hasMany(InventoryGroups::class, 'uuid', 'main_group_id');
-    //   }
+      public function group(): HasMany
+      {
+          return $this->hasMany(InventoryGroups::class, 'uuid', 'main_group_id');
+      }
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

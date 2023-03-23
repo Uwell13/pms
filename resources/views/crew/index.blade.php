@@ -90,7 +90,7 @@
                         <div class="valid-feedback"> Ok! </div>
                         <div class="invalid-feedback"> Required. </div>
                     </div>
-                    <div class="col-sm-12">
+                    {{-- <div class="col-sm-12">
                         <label class="form-label" for="bs-validation-categori">Role</label>
                         <select class="form-select" id="bs-validation-categori" name="roles[]" required>
                             <option value="">Select Role</option>
@@ -100,7 +100,7 @@
                         </select>
                         <div class="valid-feedback"> Ok! </div>
                         <div class="invalid-feedback"> Required. </div>
-                    </div>
+                    </div> --}}
                     <div class="col-sm-12">
                         <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
                         <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
