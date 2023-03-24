@@ -4,7 +4,6 @@ namespace App\Models\ship;
 
 use App\Models\crew\Crew;
 use App\Models\inventory\InventoryMainGroups;
-use App\Models\Inventory\MainGroup;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
