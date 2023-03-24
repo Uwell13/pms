@@ -6,7 +6,7 @@
     </div>
     @endcan
     <br />
-    <table class="dt-complex-header table table-bordered">
+    <table class="datatables-basic table">
         <thead>
         <tr>
             <th>No</th>
@@ -15,8 +15,8 @@
             <th>Action</th>
         </tr>
         </thead>
-        @foreach ($subgroup as $sgroup)
         <tbody>
+            @foreach ($subgroup as $sgroup)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $sgroup->code_sub_group }}</td>
@@ -33,8 +33,8 @@
                 @endcan
                 </td>
             </tr>
+            @endforeach
         </tbody>
-        @endforeach
     </table>
     </div>
 <!--/ DataTable with Buttons -->

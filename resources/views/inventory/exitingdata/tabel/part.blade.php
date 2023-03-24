@@ -6,7 +6,7 @@
     </div>
     @endcan
     <br />
-    <table class="dt-complex-header table table-bordered">
+    <table class="datatables-basic table">
         <thead>
         <tr>
             <th>No</th>
@@ -19,8 +19,8 @@
             <th>Action</th>
         </tr>
         </thead>
-        @foreach ($part as $part)
         <tbody>
+            @foreach ($part as $part)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $part->code_part }}</td>
@@ -41,8 +41,8 @@
                     @endcan
                 </td>
             </tr>
+            @endforeach
         </tbody>
-        @endforeach
     </table>
     </div>
 <!--/ DataTable with Buttons -->

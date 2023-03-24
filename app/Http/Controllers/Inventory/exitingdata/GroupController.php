@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Inventory\exitingdata;
 
 use App\Http\Controllers\Controller;
 use App\Models\inventory\InventoryGroups;
+use App\Models\inventory\InventoryMainGroups;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class GroupController extends Controller
 {
@@ -25,7 +27,8 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('inventory.exitingdata.group.create');
+        $maingroup = InventoryMainGroups::all();
+        return view('inventory.exitingdata.group.create', compact('maingroup'));
     }
 
     /**
@@ -38,12 +41,13 @@ class GroupController extends Controller
     {
         $this->validate($request ,[
             'main_group_id' => 'required',
-            'uuid' => 'required',
             'code_group' => 'required|numeric|digits:1',
             'name' => 'required',
         ]);
 
         $input = $request->all();
+        $input['uuid'] = Uuid::uuid4();
+
         InventoryGroups::create($input);
 
         return redirect()->route('exitingdata.index')

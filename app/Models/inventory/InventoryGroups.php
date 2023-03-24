@@ -24,4 +24,13 @@ class InventoryGroups extends Model
         'code_group',
         'name',
     ];
+    public function main_group()
+    {
+        return $this->belongsTo(InventoryMainGroups::class);
+    }
+
+    public function sub_group(): HasMany
+    {
+        return $this->hasMany(InventorySubGroup::class, 'uuid', 'group_id');
+    }
 }

@@ -7,7 +7,7 @@
         <a class="btn btn-success" href="{{ route('unit.create') }}"> Create New Product</a>
     </div>
     <br />
-    <table class="dt-complex-header table table-bordered">
+    <table class="datatables-basic table">
         <thead>
         <tr>
             <th>No</th>
@@ -21,8 +21,8 @@
             <th>Action</th>
         </tr>
         </thead>
-        @foreach ($unit as $unit)
         <tbody>
+            @foreach ($unit as $unit)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $unit->code_units }}</td>
@@ -44,8 +44,8 @@
                 @endcan
                 </td>
             </tr>
+            @endforeach
         </tbody>
-        @endforeach
     </table>
     </div>
 <!--/ DataTable with Buttons -->
