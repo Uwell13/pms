@@ -32,7 +32,7 @@ class InventoryMainGroups extends Model
   
       public function group(): HasMany
       {
-          return $this->hasMany(InventoryGroups::class);
+          return $this->hasMany(InventoryGroups::class, 'uuid', 'main_group_id');
       }
     protected $casts = [
         'email_verified_at' => 'datetime',

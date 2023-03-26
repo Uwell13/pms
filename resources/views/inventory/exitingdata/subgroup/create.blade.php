@@ -25,9 +25,12 @@
                 <div data-repeater-item>
                   <div class="row">
                     <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
-                    <label class="form-label" for="form-repeater-1-1">UUID</label>
-                    {!! Form::text('uuid', null, array('placeholder' => 'uuid', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
-                    {{-- <input type="text" id="form-repeater-1-1" class="form-control"  name="uuid" /> --}}
+                      <label class="form-label" for="form-repeater-1-3">Group Id</label>
+                      <select id="select2Basic" class="select2 form-select form-select-lg" data-allow-clear="true" name="group_id">
+                        @foreach ($group as $group)
+                        <option value="{{ $group->uuid }}">{{ $group->code_group }}-{{ $group->name }}</option>
+                        @endforeach
+                      </select>
                     </div>
                     <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
                       <label class="form-label" for="form-repeater-1-2">Code Sub Group</label>
@@ -37,11 +40,6 @@
                     <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
                       <label class="form-label" for="form-repeater-1-3">Name</label>
                       {!! Form::text('name', null, array('placeholder' => 'Name', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
-                      {{-- <input type="text" id="form-repeater-1-5" class="form-control" name="name" /> --}}
-                    </div>
-                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
-                      <label class="form-label" for="form-repeater-1-3">Group Id</label>
-                      {!! Form::text('group_id', null, array('placeholder' => 'Ship Id', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
                       {{-- <input type="text" id="form-repeater-1-5" class="form-control" name="name" /> --}}
                     </div>
                   </div>

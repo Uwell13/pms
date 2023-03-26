@@ -28,7 +28,7 @@
                       <label class="form-label" for="form-repeater-1-3">Main Group Id</label>
                       <select id="select2Basic" class="select2 form-select form-select-lg" data-allow-clear="true" name="main_group_id">
                         @foreach ($maingroup as $group)
-                        <option value="{{ $group->code_main_group }}">{{ $group->code_main_group }}-{{ $group->name }}</option>
+                        <option value="{{ $group->uuid }}">{{ $group->code_main_group }}-{{ $group->name }}</option>
                         @endforeach
                       </select>
                     </div>

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Inventory\exitingdata;
 
 use App\Http\Controllers\Controller;
+use App\Models\inventory\InventoryGroups;
 use App\Models\inventory\InventorySubGroups;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class SubGroupController extends Controller
 {
@@ -25,7 +27,8 @@ class SubGroupController extends Controller
      */
     public function create()
     {
-        return view('inventory.exitingdata.subgroup.create');
+        $group = InventoryGroups::all();
+        return view('inventory.exitingdata.subgroup.create',compact('group'));
     }
 
     /**
@@ -38,12 +41,12 @@ class SubGroupController extends Controller
     {
         $this->validate($request, [
             'group_id' => 'required',
-            'uuid' => 'required',
             'code_sub_group' => 'required|numeric|digits:1',
             'name' => 'required',
         ]);
 
         $input = $request->all();
+        $input['uuid'] = Uuid::uuid4();
         InventorySubGroups::create($input);
 
         return redirect()->route('exitingdata.index')
@@ -69,8 +72,9 @@ class SubGroupController extends Controller
      */
     public function edit($id)
     {
+        $group = InventoryGroups::all();
         $subgroup = InventorySubGroups::find($id);
-        return view('inventory.exitingdata.subgroup.edit', compact('subgroup'));
+        return view('inventory.exitingdata.subgroup.edit', compact('subgroup','group'));
     }
 
     /**
@@ -84,7 +88,6 @@ class SubGroupController extends Controller
     {
         $this->validate($request, [
         'group_id' => 'required',
-        'uuid' => 'required',
         'code_sub_group' => 'required|numeric|digits:1',
         'name' => 'required',
             ]);

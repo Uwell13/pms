@@ -9,18 +9,37 @@
     <table class="datatables-basic table">
         <thead>
         <tr>
-            <th>No</th>
-            <th>Code</th>
+            <th></th>
+            <th></th>
+            <th>Main Group</th>
+            <th>Group</th>
+            <th>Code Sub Group</th>
             <th>Name Sub Group</th>
+            <th>Full Code + Name</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
-            @foreach ($subgroup as $sgroup)
+            @foreach ($subgroups as $sgroup)
             <tr>
-                <td>{{ $loop->iteration }}</td>
+                <td></td>
+                <td></td>
+                <td>
+                    {{ $sgroup->group->main_group->code_main_group }}-
+                    {{ $sgroup->group->main_group->name }}
+                </td>
+                <td>
+                    {{ $sgroup->group->code_group }}-
+                    {{ $sgroup->group->name }}
+                </td>
                 <td>{{ $sgroup->code_sub_group }}</td>
                 <td>{{ $sgroup->name }}</td>
+                <td>
+                    {{ $sgroup->group->main_group->code_main_group }}
+                    {{ $sgroup->group->code_group }}
+                    {{ $sgroup->code_sub_group }}-
+                    {{ $sgroup->name }}
+                </td>
                 <td>
                 @can('Exiting-Data-Edit')       
                     <a class="btn submit-btn" href="{{ route('subgroup.edit',$sgroup->id) }}"><i class=" ti ti-edit ti-ms"></i></a>

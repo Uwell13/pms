@@ -45,7 +45,7 @@ class MainGroupController extends Controller
 
         $input = $request->all();
         $ship_id = Ship::where('uuid', session('ship_uuid'))->get()->first();
-        $input['ship_id'] = $ship_id->id;
+        $input['ship_id'] = $ship_id->uuid;
         $input['uuid'] = Uuid::uuid4();
 
         InventoryMainGroups::create($input);

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class InventorySubGroups extends Model
 {
+    use HasFactory;
+
     protected $table = 'inventory_sub_groups';
     public $incrementing = false;
     protected $primaryKey = 'id'; 
@@ -18,13 +20,6 @@ class InventorySubGroups extends Model
       'code_sub_group',
       'name'
   ];
-
-  public static $validator = [
-      'group_id' => 'required',
-      'uuid' => 'required',
-      'code_sub_group' => 'required|numeric|digits:1',
-      'name' => 'required',
-];
 
   public function group(): BelongsTo
   {

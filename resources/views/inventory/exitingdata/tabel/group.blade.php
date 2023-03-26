@@ -12,7 +12,7 @@
                 <th></th>
                 <th></th>
                 <th>Main Group</th>
-                <th>Code</th>
+                <th>Code Group</th>
                 <th>Name Group</th>
                 <th>Full Code + Name</th>
                 <th>Action</th>
@@ -28,7 +28,7 @@
                     <td>{{ $group->code_group }}</td>
                     <td>{{ $group->name }}</td>
                     <td>
-                        {{ $group->main_group_id }}
+                        {{ $group->main_group->code_main_group }}
                         {{ $group->code_group }}-
                         {{ $group->name }}
 

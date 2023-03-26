@@ -73,6 +73,7 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
+        $maingroup = InventoryMainGroups::all();
         $group = InventoryGroups::find($id);
         return view('inventory.exitingdata.group.edit', compact('group'));
     }
@@ -88,7 +89,6 @@ class GroupController extends Controller
     {
         $this->validate($request ,[
             'main_group_id' => 'required',
-            'uuid' => 'required',
             'code_group' => 'required|numeric|digits:1',
             'name' => 'required'
         ]);
