@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Inventory\exitingdata;
 
 use App\Http\Controllers\Controller;
+use App\Models\inventory\InventorySubGroups;
 use App\Models\inventory\InventoryUnits;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class UnitController extends Controller
 {
@@ -25,7 +27,8 @@ class UnitController extends Controller
      */
     public function create()
     {
-        return view('inventory.exitingdata.unit.create');
+        $subgroups  = InventorySubGroups::whereHas('group.main_group')->paginate(2);
+        return view('inventory.exitingdata.unit.create', compact('subgroups'));
     }
 
     /**
@@ -40,7 +43,6 @@ class UnitController extends Controller
         'sub_group_id' => 'required',
         'code_units' => 'required',
         'name' => 'required',
-        'uuid' => 'required',
         'item_code' => 'required',
         // 'd_cu' => 'nullable',
         'list_no' => 'nullable',
@@ -62,6 +64,7 @@ class UnitController extends Controller
         ]);
 
         $input = $request->all();
+        $input['uuid'] = Uuid::uuid4();
         InventoryUnits::create($input);
 
         return redirect()->route('exitingdata.index')
@@ -87,6 +90,7 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
+        $subgroups  = InventorySubGroups::whereHas('group.main_group')->paginate(2);
         $unit = InventoryUnits::find($id);
         return view('inventory.exitingdata.unit.edit', compact('unit'));
     }
@@ -104,7 +108,6 @@ class UnitController extends Controller
         'sub_group_id' => 'required',
         'code_units' => 'required',
         'name' => 'required',
-        'uuid' => 'required',
         'item_code' => 'required',
         // 'd_cu' => 'nullable',
         'list_no' => 'nullable',

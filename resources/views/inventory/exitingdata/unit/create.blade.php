@@ -24,30 +24,89 @@
               <div data-repeater-list="group-a">
                 <div data-repeater-item>
                   <div class="row">
-                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
-                    <label class="form-label" for="form-repeater-1-1">UUID</label>
-                    {!! Form::text('uuid', null, array('placeholder' => 'uuid', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
-                    {{-- <input type="text" id="form-repeater-1-1" class="form-control"  name="uuid" /> --}}
-                    </div>
-                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
-                      <label class="form-label" for="form-repeater-1-2">Code Unit</label>
-                      {!! Form::text('code_units', null, array('placeholder' => 'code Unit', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
-                      {{-- <input type="text" id="form-repeater-1-2" class="form-control" name="codemain" /> --}}
-                    </div>
-                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
-                      <label class="form-label" for="form-repeater-1-3">Name</label>
-                      {!! Form::text('name', null, array('placeholder' => 'Name', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
-                      {{-- <input type="text" id="form-repeater-1-5" class="form-control" name="name" /> --}}
-                    </div>
-                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
                       <label class="form-label" for="form-repeater-1-3">Sub Group Id</label>
-                      {!! Form::text('sub_group_id', null, array('placeholder' => 'Sub Group Id', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
-                      {{-- <input type="text" id="form-repeater-1-5" class="form-control" name="name" /> --}}
+                      <select id="select2Basic" class="select2 form-select form-select-lg" data-allow-clear="true" name="sub_group_id">
+                        @foreach ($subgroups as $sgroup)
+                        <option value="{{ $sgroup->uuid }}">{{ $sgroup->group->main_group->code_main_group }}{{ $sgroup->gRoup->code_group }}{{ $sgroup->code_sub_group }}-{{ $sgroup->name }}</option>
+                        @endforeach
+                      </select>
                     </div>
-                    <div class="mb-3 col-lg-6 col-xl-3 col-12 mb-0">
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-2">Code Unit</label>
+                      <input type="text" id="form-repeater-1-2" class="form-control" placeholder="Format 000" name="code_units" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Name</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="Name" name="name" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
                       <label class="form-label" for="form-repeater-1-3">Item Code</label>
-                      {!! Form::text('item_code', null, array('placeholder' => 'Item Code', 'id' => 'form-repeater-1-1','class' => 'form-control')) !!}
-                      {{-- <input type="text" id="form-repeater-1-5" class="form-control" name="name" /> --}}
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="Item Code" name="item_code" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">List No</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="List No" name="lise_no" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Drawing No</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="Drawing" name="drawing_no" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Vendor</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="Vendor" name="vendor" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Type</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="Type" name="type" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Unit No</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="Unit No" name="serial" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Issued By</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="Issued By" name="issue_by" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Certificate</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="Certificate" name="certificate_no" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Specification</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="specification_detail"></textarea>
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Maintenance</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="maintenance_detail"></textarea>
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Approval Number</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" name="number_approval" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Approval Date</label>
+                      <input type="date" id="form-repeater-1-5" class="form-control" id="html5-date-input" name="date_approval" />  
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">PLace</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" name="pnd_place" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Date</label>
+                      <input type="date" id="form-repeater-1-5" class="form-control" id="html5-date-input" name="pnd_date" />  
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Validity</label>
+                      <input type="date" id="form-repeater-1-5" class="form-control" id="html5-date-input" name="validity" />  
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Maker</label>
+                      <input type="text" id="form-repeater-1-5" class="form-control" name="maker" />
+                    </div>
+                    <div class="mb-3 col-lg-6 col-xl-6 col-12 mb-0">
+                      <label class="form-label" for="form-repeater-1-3">Upload Image</label>
+                      <input type="file" id="form-repeater-1-5" class="form-control" id="formFileMultiple" name="image" />  
                     </div>
                   </div>
                   <hr>

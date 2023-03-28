@@ -27,8 +27,8 @@ class SubGroupController extends Controller
      */
     public function create()
     {
-        $group = InventoryGroups::all();
-        return view('inventory.exitingdata.subgroup.create',compact('group'));
+        $groups    = InventoryGroups::with('main_group')->paginate(2);
+        return view('inventory.exitingdata.subgroup.create',compact('groups'));
     }
 
     /**

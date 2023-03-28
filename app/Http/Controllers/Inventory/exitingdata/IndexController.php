@@ -23,7 +23,7 @@ class IndexController extends Controller
         $maingroup = InventoryMainGroups::with('ship')->paginate(2); 
         $groups    = InventoryGroups::with('main_group')->paginate(2);
         $subgroups  = InventorySubGroups::whereHas('group.main_group')->paginate(2);
-        $unit      = InventoryUnits::all();
+        $unit      = InventoryUnits::whereHas('sub_group.group.main_group')->paginate(2);
         $component = InventoryComponents::all();
         $part      = InventoryParts::all();
         return view('inventory.exitingdata.index', compact('maingroup','groups','subgroups','unit','component','part'));
