@@ -18,6 +18,7 @@
             <th>Unit Code</th>
             <th>Nama</th>
             <th>Full Code + Name</th>
+            <th>Item Code</th>
             <th>List No</th>
             <th>Drawing No</th>
             <th>Vendor</th>
@@ -63,6 +64,7 @@
                     {{ $unit->code_units }}-
                     {{ $unit->name }}
                 </td>
+                <td>{{ $unit->item_code }}</td>
                 <td>{{ $unit->list_no }}</td>
                 <td>{{ $unit->drawing_no }}</td>
                 <td>{{ $unit->vendor }}</td>

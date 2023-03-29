@@ -46,7 +46,7 @@
                     </div>
                     <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
                       <label class="form-label" for="form-repeater-1-3">List No</label>
-                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="List No" name="lise_no" />
+                      <input type="text" id="form-repeater-1-5" class="form-control" placeholder="List No" name="list_no" />
                     </div>
                     <div class="mb-3 col-lg-6 col-xl-4 col-12 mb-0">
                       <label class="form-label" for="form-repeater-1-3">Drawing No</label>

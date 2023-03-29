@@ -92,7 +92,7 @@ class UnitController extends Controller
     {
         $subgroups  = InventorySubGroups::whereHas('group.main_group')->paginate(2);
         $unit = InventoryUnits::find($id);
-        return view('inventory.exitingdata.unit.edit', compact('unit'));
+        return view('inventory.exitingdata.unit.edit', compact('unit','subgroups'));
     }
 
     /**

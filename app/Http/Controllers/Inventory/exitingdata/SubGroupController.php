@@ -72,9 +72,9 @@ class SubGroupController extends Controller
      */
     public function edit($id)
     {
-        $group = InventoryGroups::all();
+        $groups    = InventoryGroups::with('main_group')->paginate(2);
         $subgroup = InventorySubGroups::find($id);
-        return view('inventory.exitingdata.subgroup.edit', compact('subgroup','group'));
+        return view('inventory.exitingdata.subgroup.edit', compact('subgroup','groups'));
     }
 
     /**
