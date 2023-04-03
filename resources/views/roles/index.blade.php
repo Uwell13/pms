@@ -123,7 +123,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[2]->name, '-', true) }}</td>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[2]->name }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
@@ -154,7 +154,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[6]->name, '-', true) }}</td>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[6]->name }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
@@ -185,7 +185,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[10]->name, '-', true) }}</td>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[10]->name }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
@@ -216,7 +216,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[14]->name, '-', true) }}</td>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[14]->name }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
@@ -247,7 +247,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[18]->name, '-', true) }}</td>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[18]->name }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
@@ -278,7 +278,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[22]->name, '-', true) }}</td>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[22]->name }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
@@ -309,7 +309,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="text-nowrap fw-semibold">{{ strstr($permissions[26]->name, '-', true) }}</td>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[26]->name }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
@@ -339,6 +339,161 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[30]->name }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[30]->id }}" name="permission[]" type="checkbox" id="contentManagementRead7" />
+                                                        <label class="form-check-label" for="contentManagementRead7">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[31]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate7" />
+                                                        <label class="form-check-label" for="contentManagementCreate7">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[32]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate7" />
+                                                        <label class="form-check-label" for="contentManagementUpdate7">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[33]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete7" />
+                                                        <label class="form-check-label" for="contentManagementDelete7">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[34]->name }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[34]->id }}" name="permission[]" type="checkbox" id="contentManagementRead8" />
+                                                        <label class="form-check-label" for="contentManagementRead8">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[35]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate8" />
+                                                        <label class="form-check-label" for="contentManagementCreate8">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[36]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate8" />
+                                                        <label class="form-check-label" for="contentManagementUpdate8">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[37]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete8" />
+                                                        <label class="form-check-label" for="contentManagementDelete8">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[38]->name }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[38]->id }}" name="permission[]" type="checkbox" id="contentManagementRead9" />
+                                                        <label class="form-check-label" for="contentManagementRead9">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[39]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate9" />
+                                                        <label class="form-check-label" for="contentManagementCreate9">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[40]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate9" />
+                                                        <label class="form-check-label" for="contentManagementUpdate9">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[41]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete9" />
+                                                        <label class="form-check-label" for="contentManagementDelete9">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[39]->name }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[39]->id }}" name="permission[]" type="checkbox" id="contentManagementRead10" />
+                                                        <label class="form-check-label" for="contentManagementRead10">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[40]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate10" />
+                                                        <label class="form-check-label" for="contentManagementCreate10">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[41]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate10" />
+                                                        <label class="form-check-label" for="contentManagementUpdate10">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[42]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete10" />
+                                                        <label class="form-check-label" for="contentManagementDelete10">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {{-- <tr>
+                                            <td class="text-nowrap fw-semibold">{{ $permissions[43]->name }}</td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[43]->id }}" name="permission[]" type="checkbox" id="contentManagementRead11" />
+                                                        <label class="form-check-label" for="contentManagementRead11">
+                                                            Read
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[44]->id }}" name="permission[]" type="checkbox" id="contentManagementCreate11" />
+                                                        <label class="form-check-label" for="contentManagementCreate11">
+                                                            Create
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check me-3 me-lg-5">
+                                                        <input class="form-check-input" value="{{ $permissions[45]->id }}" name="permission[]" type="checkbox" id="contentManagementUpdate11" />
+                                                        <label class="form-check-label" for="contentManagementUpdate11">
+                                                            Update
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" value="{{ $permissions[46]->id }}" name="permission[]" type="checkbox" id="contentManagementDelete11" />
+                                                        <label class="form-check-label" for="contentManagementDelete11">
+                                                            Delete
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr> --}}
                                     </tbody>
                                 </table>
                             </div>

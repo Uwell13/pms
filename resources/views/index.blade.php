@@ -12,7 +12,7 @@
                         @if ($ship->photo)
                             <img src="{{ asset('storage/' . $ship->photo) }}" alt="Banner image" class="rounded-top" />
                         @else
-                            <img src="../../assets/img/pages/profile-banner.png" alt="Banner image" class="rounded-top" />
+                            <img src="{{ asset('assets/img/pages/profile-banner.png') }}" alt="Banner image" class="rounded-top" />
                         @endif
                     </div>
                     <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
