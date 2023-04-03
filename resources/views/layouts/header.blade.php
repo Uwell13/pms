@@ -64,6 +64,7 @@
 <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 <script src="{{ url('/') }}/assets/js/config.js"></script>
 {{-- <link rel="stylesheet" href="{{ url('/') }}/assets/preload.css"> --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @laravelPWA
 <style>
     .swal2-container {

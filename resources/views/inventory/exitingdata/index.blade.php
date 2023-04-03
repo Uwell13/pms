@@ -35,7 +35,7 @@
                 </div>
                 <div class="tab-pane fade" id="navs-pills-justified-sub-group" role="tabpanel">
                     @include('inventory.exitingdata.tabel.subgroup')
-            </div>
+                </div>
                 <div class="tab-pane fade" id="navs-pills-justified-unit" role="tabpanel">
                     @include('inventory.exitingdata.tabel.unit')
                 </div>

@@ -25,7 +25,7 @@
                 </li>
                 <!-- Apps -->
                 @can('Inventory-List')
-                    <li class="menu-item {{ Request::is('exitingdata') ? 'active' : '' }}">
+                    <li class="menu-item {{ Request::is('exitingdata','newstock') ? 'active' : '' }}">
                         <a href="/" class="menu-link menu-toggle">
                             <i class='menu-icon tf-icons ti ti-packages'></i>
                             <div data-i18n="Inventory">Inventory</div>
@@ -40,16 +40,16 @@
                                 </li>
                             @endcan
                             @can('Inventory-Stock-List')
-                                <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
-                                    <a href="{{ route('roles.index') }}" class="menu-link menu-link">
+                                <li class="menu-item {{ Request::is('newstock') ? 'active' : '' }}">
+                                    <a href="/newstock" class="menu-link menu-link">
                                         <i class="menu-icon tf-icons ti ti-package"></i>
                                         <div data-i18n="Inventory Stock">Inventory Stock</div>
                                     </a>
                                 </li>
                             @endcan
                             @can('Transaction-In-List')
-                                <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
-                                    <a href="{{ route('roles.index') }}" class="menu-link menu-link">
+                                <li class="menu-item {{ Request::is('transactionin') ? 'active' : '' }}">
+                                    <a href="{{ route('transactionin.index') }}" class="menu-link menu-link">
                                         <i class="menu-icon tf-icons ti ti-file-arrow-left"></i>
                                         <div data-i18n="Transaction In">Transaction In</div>
                                     </a>

@@ -85,3 +85,21 @@
                 });
         }
     </script>
+    <script>
+        $(document).ready(function () {
+            $('.edit-btn').click(function () {
+                var id = $(this).data('id');
+                $.get('/data/' + id + '/edit', function (data) {
+                    $('#editnewstock').modal('show');
+                    $('#id').val(data.id);
+                    $('#ship_id').val(data.ship_id);
+                    $('#code_category').val(data.code_category);
+                    $('#name_category').val(data.name_category);
+                    $('#stock').val(data.stock);
+                    $('#used_stock').val(data.used_stock);
+                    $('#minqty').val(data.minqty);
+                });
+            });
+        });
+    </script>
+    

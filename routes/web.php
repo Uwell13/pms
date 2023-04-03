@@ -17,7 +17,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\crew\CrewController;
+use App\Http\Controllers\Inventory\stock\NewStockController;
+use App\Http\Controllers\Inventory\transactionin\TransactionInController;
 use App\Http\Controllers\ship\ShipController;
+use PhpParser\Node\Expr\New_;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +54,12 @@ Route::group(['middleware' => ['auth', 'verified', 'ship']], function () {
     Route::resource('unit', UnitController::class);
     Route::resource('component', ComponentController::class);
     Route::resource('part', PartController::class);
+    Route::resource('newstock', NewStockController::class);
+    Route::get('/data/{id}/edit', [NewStockController::class, 'edit']);
+    Route::put('/data/update', [NewStockController::class, 'update'])->name('data.update');
+    Route::resource('transactionin', TransactionInController::class);
 });
+
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/ship/{uuid}/selected', function ($uuid) {
