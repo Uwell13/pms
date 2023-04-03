@@ -41,7 +41,7 @@
                                     <div class="col-lg-10 mx-auto mb-4">
                                         <div class="row">
                                             @foreach ($ships as $ship)
-                                                <div class="col-md-4 mb-md-0 mb-4">
+                                                <div class="col-md-4 mb-md-4 mb-4">
                                                     <div class="card h-100">
                                                         <img class="card-img-top" src="{{ asset('storage/' . $ship->photo) }}" alt="Card image cap" height="200" />
                                                         <div class="card-body">
