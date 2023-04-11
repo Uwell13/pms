@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\exitingdata;
 use App\Http\Controllers\Controller;
 use App\Models\inventory\InventorySubGroups;
 use App\Models\inventory\InventoryUnits;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
@@ -27,8 +28,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        $subgroups  = InventorySubGroups::whereHas('group.main_group')->paginate(2);
-        return view('inventory.exitingdata.unit.create', compact('subgroups'));
+       //
     }
 
     /**
@@ -50,6 +50,9 @@ class UnitController extends Controller
         'vendor' => 'nullable',
         'type' => 'nullable',
         'serial' => 'nullable',
+        'interval' => 'required',
+        'start_job' => 'required',
+        'end_job' => 'required',
         'issue_by' => 'nullable',
         'certificate_no' => 'nullable',
         'specification_detail' => 'nullable',
@@ -63,8 +66,14 @@ class UnitController extends Controller
         'image' => 'nullable',
         ]);
 
+        // $start_time = Carbon::parse($request->input('start_job'));
+        // $end_time = Carbon::parse($request->input('end_job'));
+        // $interval_hours = $start_time->diffInHours($end_time);
+        
         $input = $request->all();
+        // $input['interval'] = $interval_hours;
         $input['uuid'] = Uuid::uuid4();
+
         InventoryUnits::create($input);
 
         return redirect()->route('exitingdata.index')
@@ -90,9 +99,8 @@ class UnitController extends Controller
      */
     public function edit($id)
     {
-        $subgroups  = InventorySubGroups::whereHas('group.main_group')->paginate(2);
-        $unit = InventoryUnits::find($id);
-        return view('inventory.exitingdata.unit.edit', compact('unit','subgroups'));
+        $unit = InventoryUnits::findOrFail($id);
+        return response()->json($unit);
     }
 
     /**
@@ -115,6 +123,8 @@ class UnitController extends Controller
         'vendor' => 'nullable',
         'type' => 'nullable',
         'serial' => 'nullable',
+        'start_job'=>'required',
+        'end_job' => 'required',
         'issue_by' => 'nullable',
         'certificate_no' => 'nullable',
         'specification_detail' => 'nullable',
@@ -128,8 +138,12 @@ class UnitController extends Controller
         'image' => 'nullable',
         ]);
 
+        $start_time = Carbon::parse($request->input('start_job'));
+        $end_time = Carbon::parse($request->input('end_job'));
+        $interval_hours = $start_time->diffInHours($end_time);
+        $input['interval'] = $interval_hours;
         $input = $request->all();
-        $unit = InventoryUnits::find($id);
+        $unit = InventoryUnits::findOrFail($id);
         $unit->update($input);
 
         return redirect()->route('exitingdata.index')

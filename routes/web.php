@@ -20,6 +20,7 @@ use App\Http\Controllers\crew\CrewController;
 use App\Http\Controllers\Inventory\stock\NewStockController;
 use App\Http\Controllers\Inventory\transactionin\TransactionInController;
 use App\Http\Controllers\ship\ShipController;
+use App\Models\inventory\InventoryGroups;
 use PhpParser\Node\Expr\New_;
 
 /*
@@ -48,16 +49,34 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('crew', CrewController::class);
     Route::resource('profile', ProfileController::class);
     Route::resource('exitingdata', IndexController::class);
-    Route::resource('maingroup', ExitingdataMainGroupController::class);
-    Route::resource('group', ExitingdataGroupController::class);
-    Route::resource('subgroup', ExitingdataSubGroupController::class);
-    Route::resource('unit', UnitController::class);
-    Route::resource('component', ComponentController::class);
-    Route::resource('part', PartController::class);
     Route::resource('newstock', NewStockController::class);
     Route::get('/data/{id}/edit', [NewStockController::class, 'edit']);
     Route::put('/data/update', [NewStockController::class, 'update'])->name('data.update');
     Route::resource('transactionin', TransactionInController::class);
+});
+
+Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::resource('maingroup', ExitingdataMainGroupController::class);
+
+    Route::resource('group', ExitingdataGroupController::class);
+    Route::get('/group/{id}/edit', [ExitingdataGroupController::class, 'edit']);
+    Route::put('/group/{id}', [ExitingdataGroupController::class, 'update'])->name('group.update');
+
+    Route::resource('subgroup', ExitingdataSubGroupController::class);
+    Route::get('/subgroup/{id}/edit', [ExitingdataGroupController::class, 'edit']);
+    Route::put('/subgroup/{id}', [ExitingdataGroupController::class, 'update'])->name('subgroup.update');
+    
+    Route::resource('unit', UnitController::class);
+    Route::get('/unit/{id}/edit', [ExitingdataGroupController::class, 'edit']);
+    Route::put('/unit/{id}', [ExitingdataGroupController::class, 'update'])->name('unit.update');
+
+    Route::resource('component', ComponentController::class);
+    Route::get('/component/{id}/edit', [ExitingdataGroupController::class, 'edit']);
+    Route::put('/component/{id}', [ExitingdataGroupController::class, 'update'])->name('component.update');
+
+    Route::resource('part', PartController::class);
+    Route::get('/part/{id}/edit', [ExitingdataGroupController::class, 'edit']);
+    Route::put('/part/{id}', [ExitingdataGroupController::class, 'update'])->name('part.update');
 });
 
 
@@ -74,3 +93,4 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         return redirect('/');
     });
 });
+

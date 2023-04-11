@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\exitingdata;
 use App\Http\Controllers\Controller;
 use App\Models\inventory\InventoryComponents;
 use App\Models\inventory\InventoryUnits;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
@@ -27,8 +28,7 @@ class ComponentController extends Controller
      */
     public function create()
     {
-        $unit  = InventoryUnits::whereHas('sub_group.group.main_group')->paginate(2);
-        return view('inventory.exitingdata.component.create', compact('unit'));
+        // 
     }
 
     /**
@@ -51,6 +51,8 @@ class ComponentController extends Controller
             'type' => 'nullable',
             'serial' => 'nullable',
             'issue_by' => 'nullable',
+            'start_job'=>'required',
+            'end_job' => 'required',
             'certificate_no' => 'nullable',
             'specification_detail' => 'nullable',
             'maintenance_detail' => 'nullable',
@@ -63,8 +65,14 @@ class ComponentController extends Controller
             'image' => 'nullable',
         ]);
 
+        $start_time = Carbon::parse($request->input('start_job'));
+        $end_time = Carbon::parse($request->input('end_job'));
+        $interval_hours = $start_time->diffInHours($end_time);
+        
         $input = $request->all();
+        $input['interval'] = $interval_hours;
         $input['uuid'] = Uuid::uuid4();
+
         InventoryComponents::create($input);
 
         return redirect()->route('exitingdata.index')
@@ -79,7 +87,8 @@ class ComponentController extends Controller
      */
     public function show($id)
     {
-        //
+        $unit = InventoryUnits::findOrFail($id);
+        return response()->json($unit);
     }
 
     /**
@@ -90,9 +99,8 @@ class ComponentController extends Controller
      */
     public function edit($id)
     {
-        $unit  = InventoryUnits::whereHas('sub_group.group.main_group')->paginate(2);
-        $comp = InventoryComponents::find($id);
-        return view('inventory.exitingdata.component.edit', compact('comp','unit'));
+        $component = InventoryComponents::findOrFail($id);
+        return response()->json($component);
     }
 
     /**
@@ -109,7 +117,6 @@ class ComponentController extends Controller
             'code_component' => 'required',
             // 'd_cc' => 'nullable',
             'name' => 'required',
-            'uuid' => 'required',
             'item_code' => 'required',
             'list_no' => 'nullable',
             'drawing_no' => 'nullable',
@@ -117,6 +124,8 @@ class ComponentController extends Controller
             'type' => 'nullable',
             'serial' => 'nullable',
             'issue_by' => 'nullable',
+            'start_job'=>'required',
+            'end_job' => 'required',
             'certificate_no' => 'nullable',
             'specification_detail' => 'nullable',
             'maintenance_detail' => 'nullable',
@@ -129,8 +138,13 @@ class ComponentController extends Controller
             'image' => 'nullable',
         ]);
 
+        $start_time = Carbon::parse($request->input('start_job'));
+        $end_time = Carbon::parse($request->input('end_job'));
+        $interval_hours = $start_time->diffInHours($end_time);
+        
         $input = $request->all();
-        $comp = InventoryComponents::find($id);
+        $input['interval'] = $interval_hours;
+        $comp = InventoryComponents::findOrFail($id);
         $comp->update($input);
 
         return redirect()->route('exitingdata.index')

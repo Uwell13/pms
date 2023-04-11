@@ -73,9 +73,8 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $maingroup = InventoryMainGroups::all();
-        $group = InventoryGroups::find($id);
-        return view('inventory.exitingdata.group.edit', compact('group'));
+        $group = InventoryGroups::findOrFail($id);
+        return response()->json($group);
     }
 
     /**
@@ -87,16 +86,11 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request ,[
-            'main_group_id' => 'required',
-            'code_group' => 'required|numeric|digits:1',
-            'name' => 'required'
-        ]);
-
-        $input = $request->all();
-        $group = InventoryGroups::find($id);
-        $group->update($input);
-        // dd($group);
+        $group = InventoryGroups::findOrFail($id);
+        $group->main_group_id = $request->input('main_group_id');
+        $group->code_group = $request->input('code_group');
+        $group->name = $request->input('name');
+        $group->save();
         return redirect()->route('exitingdata.index')
         ->with('success', 'Update successfully');
 

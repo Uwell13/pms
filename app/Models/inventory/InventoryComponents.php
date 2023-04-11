@@ -27,6 +27,9 @@ class InventoryComponents extends Model
       'type',
       'serial',
       'issue_by',
+      'interval',
+      'start_job',
+        'end_job',
       'certificate_no',
       'specification_detail',
       'maintenance_detail',
@@ -39,30 +42,6 @@ class InventoryComponents extends Model
       'image',
   ];
 
-  public static $validator = [
-      'unit_id' => 'required',
-      'code_component' => 'required|regex:/\d\d\d$\b/',
-      // 'd_cc' => 'nullable',
-      'name' => 'required',
-      'uuid' => 'required',
-      'item_code' => 'required',
-      'list_no' => 'nullable',
-      'drawing_no' => 'nullable',
-      'vendor' => 'nullable',
-      'type' => 'nullable',
-      'serial' => 'nullable',
-      'issue_by' => 'nullable',
-      'certificate_no' => 'nullable',
-      'specification_detail' => 'nullable',
-      'maintenance_detail' => 'nullable',
-      'number_approval' => 'nullable',
-      'date_approval' => 'nullable',
-      'pnd_place' => 'nullable',
-      'pnd_date' => 'nullable',
-      'validity' => 'nullable',
-      'maker' => 'nullable',
-      'image' => 'nullable',
-];
 
   public function unit(): BelongsTo
   {

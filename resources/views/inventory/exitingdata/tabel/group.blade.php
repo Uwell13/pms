@@ -1,105 +1,139 @@
- <!-- DataTable with Buttons -->
- <div class="card-datatable table-responsive pt-0">
-    @can('Exiting-Data-Create')
-    <div class="pull-right">
-        <a class="btn btn-success" href="{{ route('group.create') }}"> Create New</a>
-    </div>
-    @endcan
-    <br />
-    <table class="datatables-basic table">
-        <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th>Main Group</th>
-                <th>Code Group</th>
-                <th>Name Group</th>
-                <th>Full Code + Name</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-                @foreach ($groups as $group)
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>{{ $group->main_group->code_main_group }}-
-                        {{ $group->main_group->name }}</td>
-                    <td>{{ $group->code_group }}</td>
-                    <td>{{ $group->name }}</td>
-                    <td>
-                        {{ $group->main_group->code_main_group }}
-                        {{ $group->code_group }}-
-                        {{ $group->name }}
+<div class="d-flex justify-content-between align-items-center ">
+  <div class="col-xl-3">
+      <div class="mb-3 row">
+          <label for="html5-search-input" class="col-md-2 col-form-label">Search:</label>
+          <div class="col-md-9">
+            <input class="form-control" type="text" name="search" placeholder="Search ..." id="search-group" />
+          </div>
+      </div>
+  </div>
+  <div class="d-flex justify-content-center justify-content-md-end">
+    <button class="btn btn-label-primary dropdown-toggle me-2" id="export-btn">Export</button>
+    <button class="create-new btn btn-primary" data-bs-toggle="modal" data-bs-target="#creategroup"><i class="ti ti-plus me-sm-1"></i>Add New</button>
+  </div>
+</div>        
 
-                    </td>
-                    <td>
-                @can('Exiting-Data-Edit')       
-                    <a class="btn submit-btn" href="{{ route('group.edit',$group->id) }}"><i class=" ti ti-edit ti-ms"></i></a>
-                @endcan
+<div class="table-responsive text-nowrap ">
+  <table class="table table-striped" id="table-id"> 
+  <thead>
+    <tr>
+      <th></th>
+      <th>Action</th>
+      <th>Main Group</th>
+      <th>Code Group</th>
+      <th>Name Group</th>
+      <th>Full Code + Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($group as $group)
+    <tr>
+      <td></td>
+      <td>
+  @can('Exiting-Data-Edit')       
+  <a class="btn submit-btn editgroup-btn" data-id="{{ $group->id }}" data-bs-toggle="modal" data-bs-target="#editgroup" ><i class=" ti ti-edit ti-ms"></i></a>
+  @endcan
 
-                @can('Exiting-Data-Delete')
-                    {!! Form::open(['method' => 'DELETE','route' => ['group.destroy', $group->id],'style'=>'display:inline']) !!}
-                    {{Form::button('<i class="ti ti-trash"></i>', ['type' =>'submit', 'class' => 'submit-btn'])}}
-                    {!! Form::close() !!}
-                @endcan
-                    </td>
-                </tr>
+  @can('Exiting-Data-Delete')
+      {!! Form::open(['method' => 'DELETE','route' => ['group.destroy', $group->id],'style'=>'display:inline']) !!}
+      {{Form::button('<i class="ti ti-trash"></i>', ['type' =>'submit', 'class' => 'submit-btn'])}}
+      {!! Form::close() !!}
+  @endcan
+      </td>
+      <td>{{ $group->main_group->code_main_group }}-
+          {{ $group->main_group->name }}
+      </td>
+      <td>{{ $group->code_group }}</td>
+      <td>{{ $group->name }}</td>
+      <td>
+          {{ $group->main_group->code_main_group }}
+          {{ $group->code_group }}-
+          {{ $group->name }}
+      </td>
+    </tr>
+    
+@endforeach
+</tbody>
+</table>
+</div>
+
+
+<!-- Create Group -->
+<div class="modal fade" id="creategroup" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-simple modal-edit-user">
+    <div class="modal-content p-3 p-md-5">
+      <div class="modal-body">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="text-center mb-4">
+          <h3 class="mb-2">Create Group</h3>
+          <p class="text-muted"> 
+              @if (count($errors) > 0)
+              <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                  <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                  </ul>
+              </div>
+            @endif
+          </p>
+        </div>
+        <form id="editUserForm" class="row g-3" onsubmit="return true" method="POST" action="{{ route('group.store') }}" enctype="multipart/form-data">
+          @csrf
+          <div class="col-12 ">
+              <label class="form-label">Code Main Group</label>
+              <select  class="select2 form-select form-select-lg" data-allow-clear="true" name="main_group_id">
+                <option></option>
+                @foreach ($maingroup as $mgroup)
+                <option value="{{ $mgroup->uuid }}" >
+                  [Main Group] {{ $mgroup->code_main_group }}-{{ $mgroup->name }}
+                </option>
                 @endforeach
-            </tbody>
-        </table>
-        <!-- Modal to add new record -->
-    <div class="offcanvas offcanvas-end" id="add-new-record-2">
-    <div class="offcanvas-header border-bottom">
-      <h5 class="offcanvas-title" id="exampleModalLabel">New Record</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </select>
+              <div class="valid-feedback"> Ok! </div>
+              <div class="invalid-feedback"> Required. </div>
+          </div>
+          <div class="col-12 ">
+              <label class="form-label">Code Group</label>
+              <input type="text" id="code_group" name="code_group" class="form-control" placeholder="code Group" required />
+              <div class="valid-feedback"> Ok! </div>
+              <div class="invalid-feedback"> Required. </div>
+          </div>
+          <div class="col-12">
+              <label class="form-label" for="modalEditUserName">Name Group</label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="Name" required/>
+              <div class="valid-feedback"> Ok! </div>
+              <div class="invalid-feedback"> Required. </div>
+          </div>
+          <br>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
+            <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="offcanvas-body flex-grow-1">
-      <form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
-        <div class="col-sm-12">
-          <label class="form-label" for="basicFullname">Full Name</label>
-          <div class="input-group input-group-merge">
-            <span id="basicFullname2" class="input-group-text"><i class="ti ti-user"></i></span>
-            <input type="text" id="basicFullname" class="form-control dt-full-name" name="basicFullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basicFullname2" />
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <label class="form-label" for="basicPost">Post</label>
-          <div class="input-group input-group-merge">
-            <span id="basicPost2" class="input-group-text"><i class='ti ti-briefcase'></i></span>
-            <input type="text" id="basicPost" name="basicPost" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer" aria-describedby="basicPost2" />
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <label class="form-label" for="basicEmail">Email</label>
-          <div class="input-group input-group-merge">
-            <span class="input-group-text"><i class="ti ti-mail"></i></span>
-            <input type="text" id="basicEmail" name="basicEmail" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" />
-          </div>
-          <div class="form-text">
-            You can use letters, numbers & periods
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <label class="form-label" for="basicDate">Joining Date</label>
-          <div class="input-group input-group-merge">
-            <span id="basicDate2" class="input-group-text"><i class='ti ti-calendar'></i></span>
-            <input type="text" class="form-control dt-date" id="basicDate" name="basicDate" aria-describedby="basicDate2" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <label class="form-label" for="basicSalary">Salary</label>
-          <div class="input-group input-group-merge">
-            <span id="basicSalary2" class="input-group-text"><i class='ti ti-currency-dollar'></i></span>
-            <input type="number" id="basicSalary" name="basicSalary" class="form-control dt-salary" placeholder="12000" aria-label="12000" aria-describedby="basicSalary2" />
-          </div>
-        </div>
-        <div class="col-sm-12">
-          <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
-          <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-        </div>
-      </form>
-    </div>
-    </div>
-    </div>
-    <!--/ DataTable with Buttons -->
+  </div>
+</div>
+<!--/ Create Group -->
+
+<script>
+  $(document).ready(function() {
+      $('#search-group').on('input', function() {
+          $.ajax({
+              url: '/search', // Ganti dengan URL Anda
+              method: 'GET',
+              data: {
+                  query: $(this).val()
+              },
+              success: function(data) {
+                  // Perbarui tampilan daftar data tabel dengan data yang diterima dari server
+              },
+              error: function(xhr) {
+                  console.log(xhr.responseText);
+              }
+          });
+      });
+  });
+</script>

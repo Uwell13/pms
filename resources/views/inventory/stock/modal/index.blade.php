@@ -11,15 +11,25 @@
             @csrf
             <div class="col-12 col-md-6">
               <label class="form-label" for="modalEditUserFirstName">Ship</label>
-              <input class="form-control" type="text" name="ship_id" id="exampleFormControlReadOnlyInput1" value="{{ $ship_id->name }}" readonly />
+              <input class="form-control" type="text" name="ship_id" id="exampleFormControlReadOnlyInput1" value="{{ $ship_id->uuid }}" disabled />
             </div>
             <div class="col-12 col-md-6">
               <label class="form-label">Select Unit/Component/Part</label>
               <select  class="select2 form-select form-select-lg" data-allow-clear="true" name="code_category">
-                @foreach ($part as $part)
                 <option></option>
+                @foreach ($part as $part)
                 <option value="{{ $part->item_code }}" >
                   [Part] {{ $part->component->unit->sub_group->group->main_group->code_main_group }}{{ $part->component->unit->sub_group->group->code_group }}{{ $part->component->unit->sub_group->code_sub_group }}-{{ $part->component->unit->code_units }}-{{ $part->component->code_component }}-{{ $part->code_part }}-{{ $part->name }}
+                </option>
+                @endforeach
+                @foreach ($component as $component)
+                <option value="{{ $component->item_code }}" >
+                  [Component] {{ $component->unit->sub_group->group->main_group->code_main_group }}{{ $component->unit->sub_group->group->code_group }}{{ $component->unit->sub_group->code_sub_group }}-{{ $component->unit->code_units }}-{{ $component->code_component }}-{{ $component->name }}
+                </option>
+                @endforeach
+                @foreach ($unit as $unit)
+                <option value="{{ $unit->item_code }}" >
+                  [Unit] {{ $unit->sub_group->group->main_group->code_main_group }}{{ $unit->sub_group->group->code_group }}{{ $unit->sub_group->code_sub_group }}-{{ $unit->code_units }}-{{ $unit->name }}
                 </option>
                 @endforeach
               </select>
