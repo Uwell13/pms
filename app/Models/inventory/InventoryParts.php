@@ -25,6 +25,9 @@ class InventoryParts extends Model
         'vendor',
         'type',
         'serial',
+        'interval',
+        'start_job',
+        'end_job',
         'issue_by',
         'certificate_no',
         'issue_date',
@@ -39,30 +42,7 @@ class InventoryParts extends Model
         'maker',
         'image',
     ];
-    public static $validator = [
-        'component_id' => 'required',
-        'code_part' => 'required|regex:/\d\d\d$\b/',
-        // 'd_cp' => 'nullable',
-        'name' => 'required',
-        'uuid' => 'required',
-        'item_code' => 'required',
-        'list_no' => 'nullable',
-        'drawing_no' => 'nullable',
-        'vendor' => 'nullable',
-        'type' => 'nullable',
-        'serial' => 'nullable',
-        'issue_by' => 'nullable',
-        'certificate_no' => 'nullable',
-        'specification_detail' => 'nullable',
-        'maintenance_detail' => 'nullable',
-        'number_approval' => 'nullable',
-        'date_approval' => 'nullable',
-        'pnd_place' => 'nullable',
-        'pnd_date' => 'nullable',
-        'validity' => 'nullable',
-        'maker' => 'nullable',
-        'image' => 'nullable',
-];
+    
     public function component(): BelongsTo
     {
         return $this->belongsTo(InventoryComponents::class, 'component_id', 'uuid');

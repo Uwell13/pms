@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('serial')->nullable();
             $table->integer('quantity')->nullable();
+            $table->integer('interval');
+            $table->date('start_job');
+            $table->date('end_job');
             $table->string('issue_by')->nullable();
             $table->string('certificate_no')->nullable();
             $table->date('issue_date')->nullable();

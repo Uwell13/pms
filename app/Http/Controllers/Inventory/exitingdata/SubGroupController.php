@@ -72,9 +72,8 @@ class SubGroupController extends Controller
      */
     public function edit($id)
     {
-        $groups    = InventoryGroups::with('main_group')->paginate(2);
-        $subgroup = InventorySubGroups::find($id);
-        return view('inventory.exitingdata.subgroup.edit', compact('subgroup','groups'));
+        $subgroup = InventorySubGroups::findOrFail($id);
+        return response()->json($subgroup);
     }
 
     /**
@@ -86,18 +85,13 @@ class SubGroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-        'group_id' => 'required',
-        'code_sub_group' => 'required|numeric|digits:1',
-        'name' => 'required',
-            ]);
-
-            $input = $request->all();
-            $subgroup = InventorySubGroups::find($id);
-            $subgroup->update($input);
-
-            return redirect()->route('exitingdata.index')
-            ->with('success', 'Update successfully');
+        $subgroup = InventorySubGroups::findOrFail($id);
+        $subgroup->group_id = $request->input('group_id');
+        $subgroup->code_sub_group = $request->input('code_sub_group');
+        $subgroup->name = $request->input('name');
+        $subgroup->save();
+        return redirect()->route('exitingdata.index')
+        ->with('success', 'Update successfully');
 
     }
 

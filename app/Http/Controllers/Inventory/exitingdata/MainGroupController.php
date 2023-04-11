@@ -27,7 +27,7 @@ class MainGroupController extends Controller
      */
     public function create()
     {
-        return view('inventory.exitingdata.maingroup.create');
+        //
     }
 
     /**
@@ -89,11 +89,10 @@ class MainGroupController extends Controller
         $this->validate($request, [
             'code_main_group' => 'required|integer|between:0,9'.$id,
               'name' => 'required',
-              'ship_id' => 'required|exists:ships,id',
             ]);
 
-            $input = $request->all();
             $maingroup = InventoryMainGroups::find($id);
+            $input = $request->all();
             $maingroup->update($input);
 
             return redirect()->route('exitingdata.index')

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Inventory\stock;
 
 use App\Http\Controllers\Controller;
 use App\Models\inventory\category;
+use App\Models\inventory\InventoryComponents;
 use App\Models\inventory\InventoryParts;
+use App\Models\inventory\InventoryUnits;
 use App\Models\ship\Ship;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
@@ -19,9 +21,11 @@ class NewStockController extends Controller
     public function index()
     {
         $category = category::all();
-        $part = InventoryParts::whereHas('component.unit.sub_group.group.main_group')->paginate(2);
+        $part = InventoryParts::whereHas('component.unit.sub_group.group.main_group')->get();
+        $unit      = InventoryUnits::whereHas('sub_group.group.main_group')->get();
+        $component = InventoryComponents::whereHas('unit.sub_group.group.main_group')->get();
         $ship_id = Ship::where('uuid', session('ship_uuid'))->get()->first();
-        return view('inventory.stock.index', compact('category','part','ship_id'));
+        return view('inventory.stock.index', compact('category','part','ship_id','unit','component'));
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory\exitingdata;
 use App\Http\Controllers\Controller;
 use App\Models\inventory\InventoryComponents;
 use App\Models\inventory\InventoryParts;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
 
@@ -17,8 +18,7 @@ class PartController extends Controller
      */
     public function create()
     {
-        $component  = InventoryComponents::whereHas('unit.sub_group.group.main_group')->paginate(2);
-        return view('inventory.exitingdata.part.create', compact('component'));
+       //
     }
 
     /**
@@ -40,6 +40,8 @@ class PartController extends Controller
             'vendor' => 'nullable',
             'type' => 'nullable',
             'serial' => 'nullable',
+            'start_job' => 'required',
+            'end_job' => 'required',
             'issue_by' => 'nullable',
             'certificate_no' => 'nullable',
             'specification_detail' => 'nullable',
@@ -53,7 +55,12 @@ class PartController extends Controller
             'image' => 'nullable',
         ]);
 
+        $start_time = Carbon::parse($request->input('start_job'));
+        $end_time = Carbon::parse($request->input('end_job'));
+        $interval_hours = $start_time->diffInHours($end_time);
+        
         $input = $request->all();
+        $input['interval'] = $interval_hours;
         $input['uuid'] = Uuid::uuid4();
         InventoryParts::create($input);
 
@@ -80,9 +87,8 @@ class PartController extends Controller
      */
     public function edit($id)
     {
-        $component  = InventoryComponents::whereHas('unit.sub_group.group.main_group')->paginate(2);
-        $part = InventoryParts::find($id);
-        return view('inventory.exitingdata.part.edit', compact('part','component'));
+        $part = InventoryParts::findOrFail($id);
+        return response()->json($part);
     }
 
     /**
@@ -99,13 +105,14 @@ class PartController extends Controller
             'code_part' => 'required',
             // 'd_cp' => 'nullable',
             'name' => 'required',
-            'uuid' => 'required',
             'item_code' => 'required',
             'list_no' => 'nullable',
             'drawing_no' => 'nullable',
             'vendor' => 'nullable',
             'type' => 'nullable',
             'serial' => 'nullable',
+            'start_job' => 'required',
+            'end_job' => 'required',
             'issue_by' => 'nullable',
             'certificate_no' => 'nullable',
             'specification_detail' => 'nullable',
@@ -119,9 +126,14 @@ class PartController extends Controller
             'image' => 'nullable',
         ]);
 
+        $start_time = Carbon::parse($request->input('start_job'));
+        $end_time = Carbon::parse($request->input('end_job'));
+        $interval_hours = $start_time->diffInHours($end_time);
+        
         $input = $request->all();
-        $part = InventoryParts::find($id);
-        $part->update($input);
+        $input['interval'] = $interval_hours;
+        $comp = InventoryParts::findOrFail($id);
+        $comp->update($input);
 
         return redirect()->route('exitingdata.index')
             ->with('success', 'Update successfully');
