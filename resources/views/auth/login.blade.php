@@ -76,8 +76,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en" class="light-style  customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../../../assets/"
-    data-template="horizontal-menu-template">
+<html lang="en" class="light-style  customizer-hide" dir="ltr" data-theme="theme-default" data-assets-path="../../../assets/" data-template="horizontal-menu-template">
 
 <head>
     <meta charset="utf-8" />
@@ -116,9 +115,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="../../../assets/vendor/fonts/fontawesome.css" />
@@ -154,8 +151,7 @@
 
 
     <!-- Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5J3LMKC" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5J3LMKC" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Content -->
@@ -165,12 +161,9 @@
             <!-- /Left Text -->
             <div class="d-none d-lg-flex col-lg-7 p-0">
                 <div class="auth-cover-bg auth-cover-bg-color d-flex justify-content-center align-items-center">
-                    <img src="../../../assets/img/illustrations/auth-register-illustration-light.png" alt="auth-login-cover"
-                        class="img-fluid my-5 auth-illustration" data-app-light-img="illustrations/auth-register-illustration-light.png"
-                        data-app-dark-img="illustrations/auth-register-illustration-dark.png">
+                    <img src="../../../assets/img/illustrations/auth-register-illustration-light.png" alt="auth-login-cover" class="img-fluid my-5 auth-illustration" data-app-light-img="illustrations/auth-register-illustration-light.png" data-app-dark-img="illustrations/auth-register-illustration-dark.png">
 
-                    <img src="../../../assets/img/illustrations/bg-shape-image-light.png" alt="auth-login-cover" class="platform-bg"
-                        data-app-light-img="illustrations/bg-shape-image-light.png" data-app-dark-img="illustrations/bg-shape-image-dark.png">
+                    <img src="../../../assets/img/illustrations/bg-shape-image-light.png" alt="auth-login-cover" class="platform-bg" data-app-light-img="illustrations/bg-shape-image-light.png" data-app-dark-img="illustrations/bg-shape-image-dark.png">
                 </div>
             </div>
             <!-- /Left Text -->
@@ -187,16 +180,15 @@
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h3 class="mb-1 fw-bold">Hallo Gaisss ! 👋</h3>
+                    <h3 class="mb-1 fw-bold">Login ! 👋</h3>
                     <p class="mb-4">Silahkan Login Menggunakan Email Dan Password Kamu yaa</p>
 
                     <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="mb-3">
                             <label for="username" class="form-label">Username / Email</label>
-                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username"
-                                value="{{ old('username') }}" required autocomplete="username" autofocus>
-                            @error('username')
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                            @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -213,10 +205,7 @@
                                 @endif
                             </div>
                             <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="current-password"
-                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                    aria-describedby="password" />
+                                <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                                 <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -227,8 +216,7 @@
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" hidden name="remember" id="remember"
-                                    {{ old('remember') ? 'checked' : '' }} checked>
+                                <input class="form-check-input" type="checkbox" hidden name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} checked>
                                 {{-- <label class="form-check-label" for="remember">
                                     {{ __('Remember Me') }}
                                 </label> --}}

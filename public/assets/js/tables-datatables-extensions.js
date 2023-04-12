@@ -346,7 +346,7 @@ $(function () {
         { data: 'city' },
         { data: 'start_date' },
         { data: 'salary' },
-        { data: 'status' }
+        { data: 'status' },
       ],
       columnDefs: [
         {
